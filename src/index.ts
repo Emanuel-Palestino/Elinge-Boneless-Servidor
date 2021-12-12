@@ -28,7 +28,7 @@ class Server {
 
 	routes(): void {
 		this.app.use(indexRoutes);
-		this.app.use('/api/pedidos',contenidoPedidoRoutes);
+		this.app.use('/api/contenidoPedido',contenidoPedidoRoutes);
 	}
 
 	start(): void {
