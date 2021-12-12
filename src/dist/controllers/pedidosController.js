@@ -12,12 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.contenidoPedidoController = void 0;
+exports.pedidosController = void 0;
 const database_1 = __importDefault(require("../database"));
-class ContenidoPedidoController {
+class PedidosController {
     listar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const respuesta = yield database_1.default.query('SELECT * FROM contenido_pedido ORDER BY idOrden');
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos ORDER BY idPedido');
             // console.log(respuesta);
             res.json(respuesta);
         });
@@ -25,36 +25,35 @@ class ContenidoPedidoController {
     listarUno(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            let consulta = `SELECT * FROM contenido_pedido WHERE idOrden = ${id}`;
+            let consulta = `SELECT * FROM pedidos WHERE idPedido = ${id}`;
             const respuesta = yield database_1.default.query(consulta);
             // console.log(consulta);
             if (respuesta.length > 0) {
                 res.json(respuesta[0]);
                 return;
             }
-            res.status(404).json({ 'mensaje': 'Orden no encontrada' });
+            res.status(404).json({ 'mensaje': 'Pedido no encontrada' });
         });
     }
     crear(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resp = yield database_1.default.query('INSERT INTO contenido_pedido set ?', [req.body]);
+            const resp = yield database_1.default.query('INSERT INTO pedidos set ?', [req.body]);
             res.json(resp);
         });
     }
     eliminar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { idOrden } = req.params;
-            const resp = yield database_1.default.query(`DELETE FROM contenido_pedido WHERE idOrden = ${idOrden}`);
+            const { idPedido } = req.params;
+            const resp = yield database_1.default.query(`DELETE FROM pedidos WHERE idPedido = ${idPedido}`);
             res.json(resp);
         });
     }
     actualizar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { idOrden } = req.params;
-            const resp = yield database_1.default.query('UPDATE contenido_pedido set ? WHERE IdOrden = ?', [req.body, idOrden]);
+            const { idPedido } = req.params;
+            const resp = yield database_1.default.query('UPDATE pedidos set ? WHERE IdPedido = ?', [req.body, idPedido]);
             res.json(resp);
-            // Come toguether rigth n
         });
     }
 }
-exports.contenidoPedidoController = new ContenidoPedidoController();
+exports.pedidosController = new PedidosController();
