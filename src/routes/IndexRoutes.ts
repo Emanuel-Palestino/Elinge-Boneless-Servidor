@@ -8,9 +8,7 @@ class IndexRoutes {
 	}
 
 	config() : void {
-		this.router.get('/', (req, res) => res.send('Boneless El Inge'))
-	}
-
+		this.router.get('/', (req, res) => res.send('Boneless El Inge'));
 }
 
 const indexRoutes = new IndexRoutes()
