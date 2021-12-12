@@ -9,8 +9,6 @@ class IndexRoutes {
 
 	config() : void {
 		this.router.get('/', (req, res) => res.send('Boneless El Inge'));
-		this.router.get('/contenido_pedido/', (req,res) => res.send('Probando contenido pedido'));
-
 }
 
 const indexRoutes = new IndexRoutes()

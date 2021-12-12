@@ -5,7 +5,7 @@ import swagger_ui_express from 'swagger-ui-express'
 import swaggerDocument from './swagger.json'
 
 import indexRoutes from './routes/IndexRoutes'
-import contenido_pedidoRoutes from './routes/contenido_pedidoRoutes'
+import contenidoPedidoRoutes from './routes/contenidoPedidoRoutes'
 
 class Server {
 
@@ -28,7 +28,7 @@ class Server {
 
 	routes(): void {
 		this.app.use(indexRoutes);
-		this.app.use('/api/contenidoPedido',contenido_pedidoRoutes);
+		this.app.use('/api/pedidos',contenidoPedidoRoutes);
 	}
 
 	start(): void {

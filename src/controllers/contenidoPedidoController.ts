@@ -40,4 +40,4 @@ class ContenidoPedidoController{
 	}
 }
 
-export const contenido_pedidoController = new ContenidoPedidoController();
+export const contenidoPedidoController = new ContenidoPedidoController();
