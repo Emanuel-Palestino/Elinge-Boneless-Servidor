@@ -6,6 +6,7 @@ import swaggerDocument from './swagger.json'
 
 import indexRoutes from './routes/IndexRoutes'
 import contenidoPedidoRoutes from './routes/contenidoPedidoRoutes'
+import relizarPedidoRoutes from './routes/relizarPedidoRoutes'
 
 class Server {
 
@@ -29,6 +30,8 @@ class Server {
 	routes(): void {
 		this.app.use(indexRoutes);
 		this.app.use('/api/contenidoPedido',contenidoPedidoRoutes);
+		this.app.use(indexRoutes);
+		this.app.use('/api/realizarPedido',relizarPedidoRoutes);
 	}
 
 	start(): void {
