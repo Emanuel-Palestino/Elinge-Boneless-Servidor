@@ -3,7 +3,6 @@ import cors from 'cors'
 import express, {Application} from 'express'
 import swagger_ui_express from 'swagger-ui-express'
 import swaggerDocument from './swagger.json'
-
 import indexRoutes from './routes/IndexRoutes'
 import contenidoPedidoRoutes from './routes/contenidoPedidoRoutes'
 import pedidosRoutes from './routes/pedidosRoutes'

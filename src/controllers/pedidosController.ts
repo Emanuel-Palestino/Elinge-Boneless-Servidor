@@ -29,13 +29,14 @@ class PedidosController{
 
 	public async eliminar(req: Request, res:Response){
 		const {idPedido} = req.params;
-		const resp = await pool.query(`DELETE FROM pedidos WHERE idPedido = ${idPedido}`);
+		const resp = await pool.query(`DELETE FROM pedidos WHERE idPedido= ${idPedido}`);
+		console.log(idPedido);
 		res.json(resp);
 	}
 
 	public async actualizar(req: Request, res: Response): Promise<void>{
 		const {idPedido} = req.params;
-		const resp = await pool.query('UPDATE pedidos set ? WHERE IdPedido = ?', [req.body, idPedido]);
+		const resp = await pool.query('UPDATE pedidos set ? WHERE idPedido = ?', [req.body, idPedido]);
 		res.json(resp);
 	}
 }
