@@ -27,6 +27,7 @@ class Server {
     routes() {
         this.app.use(IndexRoutes_1.default);
         this.app.use('/api/contenidoPedido', contenidoPedidoRoutes_1.default);
+        this.app.use('/api/direcciones', direccionesRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
