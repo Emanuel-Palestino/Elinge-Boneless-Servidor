@@ -20,8 +20,10 @@ class RealizarPedidoController {
             const resp = yield database_1.default.query('INSERT INTO pedidos set ?', [req.body.pedido]);
             res.json(resp);
             //buscar el idDelpedido que se agregó
+            const { idPedido } = resp.idPedido['idPedido'];
+            req.body.contenido_Pedido['idPedido'] = idPedido;
             //agregar el idPedido en el body de contenido_pedido  anexar hora a pedido
-            yield database_1.default.query('INSERT INTO contenido_pedido set ?', [req.body.contenido_pedido]);
+            yield database_1.default.query('INSERT INTO contenido_pedido set ?', [req.body.contenido_Pedido]);
             res.json(resp);
         });
     }
