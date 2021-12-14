@@ -11,6 +11,7 @@ const swagger_json_1 = __importDefault(require("./swagger.json"));
 const IndexRoutes_1 = __importDefault(require("./routes/IndexRoutes"));
 const contenidoPedidoRoutes_1 = __importDefault(require("./routes/contenidoPedidoRoutes"));
 const clientesRoutes_1 = __importDefault(require("./routes/clientesRoutes"));
+const stockRoutes_1 = __importDefault(require("./routes/stockRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -29,6 +30,7 @@ class Server {
         this.app.use(IndexRoutes_1.default);
         this.app.use('/api/contenidoPedido', contenidoPedidoRoutes_1.default);
         this.app.use('/api/clientes', clientesRoutes_1.default);
+        this.app.use('/api/stock', stockRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
