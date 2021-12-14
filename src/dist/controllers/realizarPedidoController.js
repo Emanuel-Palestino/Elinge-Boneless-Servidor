@@ -34,13 +34,8 @@ class RealizarPedidoController {
             //fuente: https://gist.github.com/MythRen/c4921735812dd2c0217a
             req.body.pedido['fecha'] = actualdate;
             const resp = yield database_1.default.query('INSERT INTO pedidos set ?', [req.body.pedido]);
-            res.json(resp);
-            //buscar el idDelpedido que se agregó
-            //const {idPedido} = resp.idPedido['idPedido'];
-            const idPedidoAux = resp.body.pedido['idPedido'];
+            const idPedidoAux = resp['insertId'];
             req.body.contenido_Pedido['idPedido'] = idPedidoAux;
-            //req.body.contenido_Pedido['idPedido']=idPedido;
-            //agregar el idPedido en el body de contenido_pedido  anexar hora a pedido
             yield database_1.default.query('INSERT INTO contenido_pedido set ?', [req.body.contenido_Pedido]);
             res.json(resp);
         });
