@@ -9,7 +9,7 @@ class RealizarPedidoRoutes{
 	}
 
 	config(): void{
-		this.router.post('/realizar', realizarPedidoController.realizar);
+		this.router.post('/', realizarPedidoController.realizar);
 	}
 }
 
