@@ -9,7 +9,12 @@
 	},
 	"host": "localhost:3000/api",
 	"basePath": "",
-	"tags": [],
+	"tags": [
+		{
+			"name":"Contenido Pedido",
+			"description": "API para obtener la información sobre el contenido de los pedidos de la página El Inge Boneless"
+		}
+	],
 	"schemes": [
 		"http"
 	],
@@ -18,5 +23,332 @@
 	],
 	"produces": [
 		"application/json"
-	]
+	],
+	"paths":{
+		"/contenidoPedido":{
+			"get":{
+				"tags":["Contenido Pedido"],
+				"summary":"Lista todo el contenido de los pedidos existentes de la página El Inge Boneless ",
+				"description":"<p>Servicio que devuelve la información detallada del contenido de cada uno de los pedidos existente en la página El Inge Boneless.</p>",
+				"responses":{
+					"200":{
+						"description": "OK",
+						"examples":{
+							"application/json":[	
+								{
+									"idOrden": 1,
+									"idPedido": 2,
+									"subtotal": 520.30,
+									"cantidadBoneless": 10,
+									"cantidadPapas": 2,
+									"mangoHabanero": 3,
+									"bbq": 5,
+									"bufalo": 1,
+									"piñaHabanero": 1,
+									"papasEspeciales": 0
+								},
+								{
+									"idOrden": 2,
+									"idPedido": 5,
+									"subtotal": 150.60,
+									"cantidadBoneless": 5,
+									"cantidadPapas": 2,
+									"mangoHabanero": 3,
+									"bbq": 2,
+									"bufalo": 0,
+									"piñaHabanero": 0,
+									"papasEspeciales": 0
+								}
+							]
+						},
+						"schema":{
+							"$ref":"#/definitions/Contenido pedidos"
+						}
+					},
+					"403":{
+						"description":"Prohibido"
+					}
+				}
+			}
+		},
+		"/contenidoPedido/{idOrden}":{
+			"get":{
+				"tags":["Contenido Pedido"],
+				"summary":"Lista el contenido de un pedido en particular de la página El Inge Boneless ",
+				"description":"<p>Servicio que devuelve la información detallada del contenido de un pedido en específico existente en la página El Inge Boneless.</p>",
+				"responses":{
+					"200":{
+						"description":"OK",
+						"examples":{
+							"application/json":[
+								{
+									"idOrden": 2,
+									"idPedido": 5,
+									"subtotal": 150.60,
+									"cantidadBoneless": 5,
+									"cantidadPapas": 2,
+									"mangoHabanero": 3,
+									"bbq": 2,
+									"bufalo": 0,
+									"piñaHabanero": 0,
+									"papasEspeciales": 0
+								}
+							]
+						},
+						"schema":{
+							"$ref":"#/definitions/Contenido pedido"
+						}
+					},
+					"403":{
+						"description":"Prohibido"
+					}
+				},
+				"parameters":[
+					{
+						"name":"idOrden",
+						"in":"path",
+						"required":true,
+						"description":"idOrden del contenido de un pedido en específico",
+						"type":"string",
+						"default":"7"
+					}
+				]
+			}
+		},
+		"/contenidoPedido/crear":{
+			"post":{
+				"summary":"Crea el contenido de un pedido dentro de la página El Inge Boneless",
+				"description":"<p>Servicio que crea el contenido de un pedido dentro de la página El Inge Boneless.</p>",
+				"operationId": "crear",
+				"produces": ["application/json"],
+				"parameters":[
+					{
+						"name": "Contenido pedido",
+						"in": "body",
+						"description": "Contenido pedido agregado",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Nuevo contenido pedido"
+						}
+					}
+				],
+				"tags":["Contenido Pedido"],
+				"responses":{
+					"201":{
+						"description":"Respuesta vacía"
+					},
+					"403":{
+						"description":"Prohibido"
+					}
+				}
+			}
+		},
+		"/contenidoPedido/eliminar/{idOrden}":{
+			"delete":{
+				"summary":"Elimina el contenido de un pedido en específico de la página El Inge Boneless",
+				"description":"<p>Servicio que elimina el contenido de un pedido dentro de la página El Inge Boneless.</p>",
+				"operationId": "eliminar",
+				"parameters":[
+					{
+						"name":"idOrden",
+						"in":"path",
+						"descrition":"id de la orden a eliminar",
+						"required":true,
+						"default":"8"
+					}
+				],
+				"tags":["Contenido Pedido"],
+				"responses":{
+					"201":{
+						"description":"Respuesta vacía"
+					},
+					"403":{
+						"description":"Prohibido"
+					}
+				}
+			}
+		},
+		"/contenidoPedido/actualizar/{idOrden}":{
+			"put":{
+				"summary":"Actualiza el contenido de un pedido en específico de la página El Inge Boneless",
+				"description":"<p>Servicio que actualiza el contenido de un determinado pedido dentro de la página El Inge Boneless.</p>",
+				"operationId": "actualizar",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "idOrden",
+						"in": "path",
+						"description": "id de la orden a cambiar",
+						"required": true,
+						"default":11
+					},
+					{
+						"name": "Contenido pedido",
+						"in": "body",
+						"description": "Contenido pedido a modificar",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Contenido pedido desactualizado"
+						}
+					}
+				],
+				"tags":["Contenido Pedido"],
+				"responses":{
+					"201":{
+						"description":"Respuesta vacía"
+					},
+					"403":{
+						"description":"Prohibido"
+					}
+				}
+			}
+		}
+	},
+	"definitions":{
+		"Contenido pedido":{
+			"type":"object",
+			"properties":{
+				"idOrden":{
+					"type":"number",
+					"description":"Identificador del contenido de un pedido"
+				},
+				"idPedido":{
+					"type":"number",
+					"description":"Identificador del número de pedido"
+				},
+				"subtotal":{
+					"type": "number",
+					"description": "Subtotal del pedido"
+				},
+				"cantidadBoneless":{
+					"type": "number",
+					"description":"Número de Boneless solicitados en el pedido"
+				},
+				"cantidadPapas":{
+					"type": "number",
+					"description": "Número de papas solicitadas en el pedido"
+				},
+				"mangoHabanero":{
+					"type":"number",
+					"description":"Número de Boneless sabor mango habanero solicitados en el pedido"
+				},
+				"bbq":{
+					"type":"number",
+					"description":"Número de Boneless sabor BBQ solicitados en el pedido"
+				},
+				"bufalo":{
+					"type":"number",
+					"description":"Número de Boneless sabor búfalo solicitados en el pedido"
+				},
+				"piñaHabanero":{
+					"type":"number",
+					"description":"Número de Boneless sabor piña habanero solicitados en el pedido"
+				},
+				"papasEspeciales":{
+					"type":"number",
+					"description":"Indica si el pedido incluye o no incluye papas especiales"
+				}
+			}
+		},
+		"Contenido pedidos":{
+			"type": "array",
+			"items":{
+				"$ref":"#/definitions/Contenido pedido"
+			}
+		},
+		"Nuevo contenido pedido":{
+			"type":"object",
+			"required":["idPedido","subtotal","cantidadBoneless","cantidadPapas","mangoHabanero","bbq","bufalo","piñaHabanero","papasEspeciales"],
+			"properties":{
+				"idOrden":{
+					"type":"number",
+					"default": 9
+				},
+				"idPedido":{
+					"type":"number",
+					"default": 1
+				},
+				"subtotal":{
+					"type": "number",
+					"default": 101.50
+				},
+				"cantidadBoneless":{
+					"type": "number",
+					"default":15
+				},
+				"cantidadPapas":{
+					"type": "number",
+					"default": 3
+				},
+				"mangoHabanero":{
+					"type":"number",
+					"default":5
+				},
+				"bbq":{
+					"type":"number",
+					"default":5
+				},
+				"bufalo":{
+					"type":"number",
+					"default":5
+				},
+				"piñaHabanero":{
+					"type":"number",
+					"default":0
+				},
+				"papasEspeciales":{
+					"type":"number",
+					"default":0
+				}
+			}
+		},
+
+		"Contenido pedido desactualizado":{
+			"type":"object",
+			"required":["idPedido","subtotal","cantidadBoneless","cantidadPapas","mangoHabanero","bbq","bufalo","piñaHabanero","papasEspeciales"],
+			"properties":{
+				"idOrden":{
+					"type":"number",
+					"default": 9
+				},
+				"idPedido":{
+					"type":"number",
+					"default": 1
+				},
+				"subtotal":{
+					"type": "number",
+					"default": 101.50
+				},
+				"cantidadBoneless":{
+					"type": "number",
+					"default":15
+				},
+				"cantidadPapas":{
+					"type": "number",
+					"default": 3
+				},
+				"mangoHabanero":{
+					"type":"number",
+					"default":5
+				},
+				"bbq":{
+					"type":"number",
+					"default":5
+				},
+				"bufalo":{
+					"type":"number",
+					"default":5
+				},
+				"piñaHabanero":{
+					"type":"number",
+					"default":0
+				},
+				"papasEspeciales":{
+					"type":"number",
+					"default":0
+				}
+			}	
+		}
+	}
 }
