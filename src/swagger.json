@@ -137,6 +137,9 @@
 				],
 				"tags":["Contenido Pedido"],
 				"responses":{
+					"200":{
+						"description":"OK"
+					},
 					"201":{
 						"description":"Respuesta vacía"
 					},
@@ -162,6 +165,9 @@
 				],
 				"tags":["Contenido Pedido"],
 				"responses":{
+					"200":{
+						"description":"OK"
+					},
 					"201":{
 						"description":"Respuesta vacía"
 					},
@@ -198,6 +204,9 @@
 				],
 				"tags":["Contenido Pedido"],
 				"responses":{
+					"200":{
+						"description":"OK"
+					},
 					"201":{
 						"description":"Respuesta vacía"
 					},
