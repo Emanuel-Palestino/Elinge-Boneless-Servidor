@@ -1,24 +1,19 @@
 import { Request, Response } from "express";
 import pool from "../database";
-
 class PedidosController{
 	public async listar(req: Request,res: Response): Promise<void>{
 		const respuesta = await pool.query('SELECT * FROM pedidos ORDER BY idPedido');
 		// console.log(respuesta);
 		res.json(respuesta);
 	}
-
 	public async listarUno(req: Request, res: Response): Promise<void>{
 		const {id} = req.params;
 		let consulta = `SELECT * FROM pedidos WHERE idPedido = ${id}`;
 		const respuesta = await pool.query(consulta);
-		// console.log(consulta);
-
 		if (respuesta.length > 0){
 			res.json(respuesta[0]);
 			return;
 		}
-
 		res.status(404).json({'mensaje':'Pedido no encontrada'});
 	}
 
@@ -39,6 +34,29 @@ class PedidosController{
 		const resp = await pool.query('UPDATE pedidos set ? WHERE idPedido = ?', [req.body, idPedido]);
 		res.json(resp);
 	}
+	public async listarPedidosFinalizados(req: Request,res: Response): Promise<void>{
+		const respuesta = await pool.query('SELECT * FROM pedidos WHERE finalizado = 1');
+		// console.log(respuesta);
+		res.json(respuesta);
+	}
+	public async listarPedidosNoFinalizados(req: Request,res: Response): Promise<void>{
+		const respuesta = await pool.query('SELECT * FROM pedidos WHERE finalizado = 0');
+		// console.log(respuesta);
+		res.json(respuesta);
+	}
+	public async listarPedidosFinalizadosCliente(req: Request,res: Response): Promise<void>{
+		const {idCliente} = req.params;
+		const respuesta = await pool.query('SELECT * FROM pedidos WHERE finalizado = 1 AND idCliente = ?',[idCliente]);
+		// console.log(respuesta);
+		res.json(respuesta);
+	}
+	public async listarPedidosNoFinalizadosCliente(req: Request,res: Response): Promise<void>{
+		const {idCliente} = req.params;
+		const respuesta = await pool.query('SELECT * FROM pedidos WHERE finalizado = 0 AND idCliente = ?',[idCliente]);
+		// console.log(respuesta);
+		res.json(respuesta);
+	}
+
 }
 
 export const pedidosController = new PedidosController();

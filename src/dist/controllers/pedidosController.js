@@ -27,7 +27,6 @@ class PedidosController {
             const { id } = req.params;
             let consulta = `SELECT * FROM pedidos WHERE idPedido = ${id}`;
             const respuesta = yield database_1.default.query(consulta);
-            // console.log(consulta);
             if (respuesta.length > 0) {
                 res.json(respuesta[0]);
                 return;
@@ -54,6 +53,36 @@ class PedidosController {
             const { idPedido } = req.params;
             const resp = yield database_1.default.query('UPDATE pedidos set ? WHERE idPedido = ?', [req.body, idPedido]);
             res.json(resp);
+        });
+    }
+    listarPedidosFinalizados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos WHERE finalizado = 1');
+            // console.log(respuesta);
+            res.json(respuesta);
+        });
+    }
+    listarPedidosNoFinalizados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos WHERE finalizado = 0');
+            // console.log(respuesta);
+            res.json(respuesta);
+        });
+    }
+    listarPedidosFinalizadosCliente(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idCliente } = req.params;
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos WHERE finalizado = 1 AND idCliente = ?', [idCliente]);
+            // console.log(respuesta);
+            res.json(respuesta);
+        });
+    }
+    listarPedidosNoFinalizadosCliente(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idCliente } = req.params;
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos WHERE finalizado = 0 AND idCliente = ?', [idCliente]);
+            // console.log(respuesta);
+            res.json(respuesta);
         });
     }
 }
