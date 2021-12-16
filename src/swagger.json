@@ -101,6 +101,9 @@
 					},
 					"403":{
 						"description":"Prohibido"
+					},
+					"404":{
+						"description":"No se encontró resultado"
 					}
 				},
 				"parameters":[
@@ -261,10 +264,6 @@
 			"type":"object",
 			"required":["idPedido","subtotal","cantidadBoneless","cantidadPapas","mangoHabanero","bbq","bufalo","piñaHabanero","papasEspeciales"],
 			"properties":{
-				"idOrden":{
-					"type":"number",
-					"default": 9
-				},
 				"idPedido":{
 					"type":"number",
 					"default": 1
@@ -308,10 +307,6 @@
 			"type":"object",
 			"required":["idPedido","subtotal","cantidadBoneless","cantidadPapas","mangoHabanero","bbq","bufalo","piñaHabanero","papasEspeciales"],
 			"properties":{
-				"idOrden":{
-					"type":"number",
-					"default": 9
-				},
 				"idPedido":{
 					"type":"number",
 					"default": 1
