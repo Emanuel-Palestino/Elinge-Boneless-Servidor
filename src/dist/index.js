@@ -28,7 +28,6 @@ class Server {
     routes() {
         this.app.use(IndexRoutes_1.default);
         this.app.use('/api/contenidoPedido', contenidoPedidoRoutes_1.default);
-        this.app.use(IndexRoutes_1.default);
         this.app.use('/api/realizarPedido', relizarPedidoRoutes_1.default);
     }
     start() {

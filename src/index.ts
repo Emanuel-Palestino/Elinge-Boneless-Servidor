@@ -30,7 +30,6 @@ class Server {
 	routes(): void {
 		this.app.use(indexRoutes);
 		this.app.use('/api/contenidoPedido',contenidoPedidoRoutes);
-		this.app.use(indexRoutes);
 		this.app.use('/api/realizarPedido',relizarPedidoRoutes);
 	}
 

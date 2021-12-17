@@ -17,27 +17,27 @@ const database_1 = __importDefault(require("../database"));
 class RealizarPedidoController {
     realizar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let date_ob = new Date();
+            let fecha_ob = new Date();
             // adjust 0 before single digit date
-            let date = ("0" + date_ob.getDate()).slice(-2);
+            let fecha = ("0" + fecha_ob.getDate()).slice(-2);
             // current month
-            let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+            let mes = ("0" + (fecha_ob.getMonth() + 1)).slice(-2);
             // current year
-            let year = date_ob.getFullYear();
+            let anyo = fecha_ob.getFullYear();
             // current hours
-            let hours = date_ob.getHours();
+            let hora = fecha_ob.getHours();
             // current minutes
-            let minutes = date_ob.getMinutes();
+            let minutos = fecha_ob.getMinutes();
             // current seconds
-            let seconds = date_ob.getSeconds();
-            const actualdate = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+            let segundos = fecha_ob.getSeconds();
+            const fechaActual = anyo + "-" + mes + "-" + fecha + " " + hora + ":" + minutos + ":" + segundos;
             //fuente: https://gist.github.com/MythRen/c4921735812dd2c0217a
-            req.body.pedido['fecha'] = actualdate;
-            const resp = yield database_1.default.query('INSERT INTO pedidos set ?', [req.body.pedido]);
-            const idPedidoAux = resp['insertId'];
+            req.body.pedido['fecha'] = fechaActual;
+            const resultado = yield database_1.default.query('INSERT INTO pedidos set ?', [req.body.pedido]);
+            const idPedidoAux = resultado['insertId'];
             req.body.contenido_Pedido['idPedido'] = idPedidoAux;
             yield database_1.default.query('INSERT INTO contenido_pedido set ?', [req.body.contenido_Pedido]);
-            res.json(resp);
+            res.json(resultado);
         });
     }
 }
