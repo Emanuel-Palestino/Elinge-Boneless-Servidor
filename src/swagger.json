@@ -271,6 +271,7 @@
 		},
 		"Nuevo contenido pedido":{
 			"type":"object",
+			"required": ["idPedido", "subtotal", "cantidadBoneless", "cantidadPapas", "mangoHabanero", "bbq", "bufalo", "piñaHabanero", "papasEspeciales"],
 			"properties":{
 				"idPedido":{
 					"type":"number",
