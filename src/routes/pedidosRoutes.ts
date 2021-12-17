@@ -10,14 +10,14 @@ class PedidosRoutes{
 
 	config(): void{
 		this.router.get('/', pedidosController.listar);
+		this.router.get('/finalizados', pedidosController.listarPedidosFinalizados);
+		this.router.get('/noFinalizados', pedidosController.listarPedidosNoFinalizados);
 		this.router.get('/:id', pedidosController.listarUno);
 		this.router.post('/crear', pedidosController.crear);
 		this.router.delete('/eliminar/:idPedido',pedidosController.eliminar);
 		this.router.put('/actualizar/:idPedido',pedidosController.actualizar);
-		this.router.get('/finalizados/lista', pedidosController.listarPedidosFinalizados);
-		this.router.get('/noFinalizados/lista', pedidosController.listarPedidosNoFinalizados);
-		this.router.get('/finalizados/cliente/:idCliente', pedidosController.listarPedidosFinalizadosCliente);
-		this.router.get('/noFinalizados/cliente/:idCliente', pedidosController.listarPedidosNoFinalizadosCliente);
+		this.router.get('/clienteFinalizados/:idCliente', pedidosController.listarPedidosFinalizadosCliente);
+		this.router.get('/clienteNoFinalizados/:idCliente', pedidosController.listarPedidosNoFinalizadosCliente);
 
 	}
 }

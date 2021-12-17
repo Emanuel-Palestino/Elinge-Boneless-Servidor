@@ -9,14 +9,14 @@ class PedidosRoutes {
     }
     config() {
         this.router.get('/', pedidosController_1.pedidosController.listar);
+        this.router.get('/finalizados', pedidosController_1.pedidosController.listarPedidosFinalizados);
+        this.router.get('/noFinalizados', pedidosController_1.pedidosController.listarPedidosNoFinalizados);
         this.router.get('/:id', pedidosController_1.pedidosController.listarUno);
         this.router.post('/crear', pedidosController_1.pedidosController.crear);
         this.router.delete('/eliminar/:idPedido', pedidosController_1.pedidosController.eliminar);
         this.router.put('/actualizar/:idPedido', pedidosController_1.pedidosController.actualizar);
-        this.router.get('/finalizados/lista', pedidosController_1.pedidosController.listarPedidosFinalizados);
-        this.router.get('/noFinalizados/lista', pedidosController_1.pedidosController.listarPedidosNoFinalizados);
-        this.router.get('/finalizados/cliente/:idCliente', pedidosController_1.pedidosController.listarPedidosFinalizadosCliente);
-        this.router.get('/noFinalizados/cliente/:idCliente', pedidosController_1.pedidosController.listarPedidosNoFinalizadosCliente);
+        this.router.get('/clienteFinalizados/:idCliente', pedidosController_1.pedidosController.listarPedidosFinalizadosCliente);
+        this.router.get('/clienteNoFinalizados/:idCliente', pedidosController_1.pedidosController.listarPedidosNoFinalizadosCliente);
     }
 }
 const pedidosRoutes = new PedidosRoutes();

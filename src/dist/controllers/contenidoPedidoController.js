@@ -53,7 +53,6 @@ class ContenidoPedidoController {
             const { idOrden } = req.params;
             const resp = yield database_1.default.query('UPDATE contenido_pedido set ? WHERE IdOrden = ?', [req.body, idOrden]);
             res.json(resp);
-            // Come toguether rigth n
         });
     }
 }

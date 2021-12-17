@@ -37,7 +37,6 @@ class ContenidoPedidoController{
 		const {idOrden} = req.params;
 		const resp = await pool.query('UPDATE contenido_pedido set ? WHERE IdOrden = ?', [req.body, idOrden]);
 		res.json(resp);
-		// Come toguether rigth n
 	}
 }
 
