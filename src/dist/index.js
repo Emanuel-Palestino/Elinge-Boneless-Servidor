@@ -10,6 +10,7 @@ const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_json_1 = __importDefault(require("./swagger.json"));
 const IndexRoutes_1 = __importDefault(require("./routes/IndexRoutes"));
 const contenidoPedidoRoutes_1 = __importDefault(require("./routes/contenidoPedidoRoutes"));
+const pedidosRoutes_1 = __importDefault(require("./routes/pedidosRoutes"));
 const relizarPedidoRoutes_1 = __importDefault(require("./routes/relizarPedidoRoutes"));
 const clientesRoutes_1 = __importDefault(require("./routes/clientesRoutes"));
 const stockRoutes_1 = __importDefault(require("./routes/stockRoutes"));
@@ -30,6 +31,7 @@ class Server {
     routes() {
         this.app.use(IndexRoutes_1.default);
         this.app.use('/api/contenidoPedido', contenidoPedidoRoutes_1.default);
+        this.app.use('/api/pedidos', pedidosRoutes_1.default);
         this.app.use('/api/realizarPedido', relizarPedidoRoutes_1.default);
         this.app.use('/api/clientes', clientesRoutes_1.default);
         this.app.use('/api/stock', stockRoutes_1.default);
