@@ -15,8 +15,8 @@ class PedidosRoutes {
         this.router.post('/crear', pedidosController_1.pedidosController.crear);
         this.router.delete('/eliminar/:idPedido', pedidosController_1.pedidosController.eliminar);
         this.router.put('/actualizar/:idPedido', pedidosController_1.pedidosController.actualizar);
-        this.router.get('/clienteFinalizados/:idCliente', pedidosController_1.pedidosController.listarPedidosFinalizadosCliente);
-        this.router.get('/clienteNoFinalizados/:idCliente', pedidosController_1.pedidosController.listarPedidosNoFinalizadosCliente);
+        this.router.get('/cliente/finalizados/:idCliente', pedidosController_1.pedidosController.listarPedidosFinalizadosCliente);
+        this.router.get('/cliente/noFinalizados/:idCliente', pedidosController_1.pedidosController.listarPedidosNoFinalizadosCliente);
     }
 }
 const pedidosRoutes = new PedidosRoutes();
