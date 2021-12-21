@@ -19,21 +19,21 @@ class DireccionesController{
 	}
 
     public async crear(req: Request, res: Response): Promise<void> {
-        const resp = await pool.query("INSERT INTO direcciones set ? ",[req.body]);
+        const resp = await pool.query('INSERT INTO direcciones set ?',[req.body]);
         res.json(resp);
     }
 
     public async actualizar(req: Request, res: Response): Promise<void> {
-        const { codigo } = req.params;
+        const { idDireccion } = req.params;
         console.log(req.params);
         const resp = await pool.query('UPDATE direcciones set ? WHERE idDireccion = ?', [req.body, idDireccion]);
         res.json(resp);
     }
 
     public async eliminar(req: Request, res: Response): Promise<void> {
-        const { codigo } = req.params;
+        const { idDireccion } = req.params;
         const resp = await pool.query(`DELETE FROM direcciones WHERE idDireccion = ${idDireccion}`);
         res.json(resp);
     }
-}
+}   
 export const direccionesController = new DireccionesController();
