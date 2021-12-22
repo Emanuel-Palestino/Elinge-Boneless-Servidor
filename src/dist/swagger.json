@@ -7,7 +7,7 @@
             "url": "https://opensource.org/licenses/MIT"
         }
     },
-    "host": "localhost:3000/api",
+    "host": "elinge-boneless.com/api",
     "basePath": "",
     "tags": [
         {
@@ -16,7 +16,7 @@
         }
     ],
     "schemes": [
-        "http"
+        "https"
     ],
     "consumes": [
         "application/json"

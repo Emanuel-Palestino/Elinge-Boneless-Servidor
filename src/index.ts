@@ -37,7 +37,6 @@ class Server {
 		this.app.use('/api/direcciones',direccionesRoutes);
 		this.app.use('/api/pedidos',pedidosRoutes);
 		this.app.use('/api/realizarPedido',relizarPedidoRoutes);
-		this.app.use('/api/contenidoPedido',contenidoPedidoRoutes)
 		this.app.use('/api/clientes',clientesRoutes)
 		this.app.use('/api/stock', stockRoutes)
 	}
