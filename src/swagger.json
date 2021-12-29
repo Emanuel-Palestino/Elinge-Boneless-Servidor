@@ -11,6 +11,10 @@
 	"basePath": "",
 	"tags": [
 		{
+            "name": "Clientes",
+            "description": "API para obtener información de los clientes de la página El Inge Boneless"
+        },
+		{
 			"name":"Contenido Pedido",
 			"description": "API para obtener la información sobre el contenido de los pedidos de la página El Inge Boneless"
 		}
@@ -25,6 +29,38 @@
 		"application/json"
 	],
 	"paths":{
+		"/clientes": 
+        {
+            "get": {
+                "tags": ["Clientes"],
+                "summary": "Listado de todos los clientes que existen de la página El Inge Boneless.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los clientes que existen en la página El Inge Boneless.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los clientes existentes en la pagina?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idClientes": 1,
+                                    "nombre": "Jose Abel",
+                                    "apellidos": "Martinez Leyva",
+                                    "telefono": "9511882179",
+                                    "correo": "joseabelmartinezleyva@gmail.com",
+                                    "contraseña":"prueba",
+                                    "sexo":"H"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Clientes"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
 		"/contenidoPedido":{
 			"get":{
 				"tags":["Contenido Pedido"],
@@ -71,6 +107,50 @@
 				}
 			}
 		},
+		"/clientes/{idCliente}": 
+        {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Listado de un cliente en particular de la página El Inge Boneless.",
+                "description":"<p>Servicio que devuelve la información detallada de un cliente en específico existente en la página El Inge Boneless.</p>",
+				"responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idClientes": 1,
+                                    "nombre": "Jose Abel",
+                                    "apellidos": "Martinez Leyva",
+                                    "telefono": "9511882179",
+                                    "correo": "joseabelmartinezleyva@gmail.com",
+                                    "contraseña":"prueba",
+                                    "sexo":"H"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Clientes"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "required": true,
+                        "description": "idCliente del cliente del cuál se requiere la información",
+                        "type": "number",
+                        "default": "10"
+                    }
+                ]
+            }
+        },
 		"/contenidoPedido/{idOrden}":{
 			"get":{
 				"tags":["Contenido Pedido"],
@@ -118,6 +198,39 @@
 				]
 			}
 		},
+		"/clientes/crear": 
+        {
+            "post": {
+                "summary": "Creando un cliente dentro de la página El Inge Boneless.",
+				"description":"<p>Servicio que crea un cliente dentro de la página El Inge Boneless.</p>",
+                "operationId": "crear",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "cliente",
+                        "in": "body",
+                        "description": "Cliente agregado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Nuevo cliente"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Clientes"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
 		"/contenidoPedido/crear":{
 			"post":{
 				"summary":"Crea el contenido de un pedido dentro de la página El Inge Boneless",
@@ -149,6 +262,34 @@
 				}
 			}
 		},
+		"/clientes/eliminar/{idCliente}": 
+        {
+            "delete": {
+                "summary": "Eliminar un cliente en específico de la página El Inge Boneless.",
+				"description":"<p>Servicio que elimina el cliente dentro de la página El Inge Boneless.</p>",
+                "operationId": "eliminar",
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "description": "id del Cliente a eliminar",
+                        "required": true,
+                        "default": 5
+                    }
+                ],
+                "tags": [
+                    "Clientes"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
 		"/contenidoPedido/eliminar/{idOrden}":{
 			"delete":{
 				"summary":"Elimina el contenido de un pedido en específico de la página El Inge Boneless",
@@ -177,6 +318,49 @@
 				}
 			}
 		},
+		"/clientes/actualizar/{idCliente}":
+        {
+            "put": {
+                "summary": "Modificando un cliente en específico de la página El Inge Boneless.",
+				"description":"<p>Servicio que modifica el cliente de la página El Inge Boneless.</p>",
+                "operationId": "actualizar",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "description": "id del Cliente a actualizar",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Cliente",
+                        "in": "body",
+                        "description": "Cliente a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Cliente desactualizado"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Clientes"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
 		"/contenidoPedido/actualizar/{idOrden}":{
 			"put":{
 				"summary":"Actualiza el contenido de un pedido en específico de la página El Inge Boneless",
@@ -311,7 +495,7 @@
 				}
 			}
 		},
-
+		
 		"Contenido pedido desactualizado":{
 			"type":"object",
 			"properties":{
@@ -352,6 +536,146 @@
 					"default":0
 				}
 			}	
-		}
+		},
+		"Cliente": 
+        {
+            "type": "object",
+            "properties": 
+            {
+                "idCliente": 
+                {
+                    "type": "number",
+                    "description": "Identificador del cliente"
+                },
+                "nombre": 
+                {
+                    "type": "string",
+                    "description": "Nombre del cliente"
+                },
+                "apellidos": 
+                {
+                    "type": "string",
+                    "description": "Apellidos del cliente"
+                },
+                "telefono": 
+                {
+                    "type": "string",
+                    "description": "Telefono del cliente"
+                },
+                "correo": 
+                {
+                    "type": "string",
+                    "description": "Correo del cliente"
+                },
+                "contraseña": 
+                {
+                    "type": "string",
+                    "description": "Contraseña del cliente"
+                },
+                "sexo": 
+                {
+                    "type": "string",
+                    "description": "Sexo del cliente"
+                }                
+            }
+        },
+		"Clientes":{
+			"type": "array",
+			"items":{
+				"$ref":"#/definitions/Cliente"
+			}
+		},
+		"Nuevo cliente": 
+        {
+            "type": "object",
+            "required": [
+                "nombre",
+                "apellidos",
+                "telefono",
+                "correo",
+                "contraseña",
+                "sexo"
+            ],
+            "properties": 
+            {
+                "nombre": 
+                {
+                    "type": "string",
+                    "default": "Jose Abel"
+                },
+                "apellidos": 
+                {
+                    "type": "string",
+                    "default": "Martinez Leyva"
+                },
+                "telefono": 
+                {
+                    "type": "string",
+                    "default": "9511882179"
+                },
+                "correo": 
+                {
+                    "type": "string",
+                    "default": "joseabelmartinezleyva@gmail.com"
+                },
+                "contraseña": 
+                {
+                    "type": "string",
+                    "default": "prueba"
+                },
+                "sexo": 
+                {
+                    "type": "string",
+                    "default": "H"
+                }
+            }
+        },
+		"Cliente desactualizado": 
+        {
+            "type": "object",
+            "required": [
+                "nombre",
+                "apellidos",
+                "telefono",
+                "correo",
+                "contraseña",
+                "sexo"
+            ],
+            "properties": 
+            {
+                "nombre": 
+                {
+                    "type": "string",
+                    "default": "Jose"
+                },
+                "apellidos": 
+                {
+                    "type": "string",
+                    "default": "Martinez"
+                },
+                "telefono": 
+                {
+                    "type": "string",
+                    "default": "9511882179"
+                },
+                "correo": 
+                {
+                    "type": "string",
+                    "default": "joseabelmartinezleyva@gmail.com"
+                },
+                "contraseña": 
+                {
+                    "type": "string",
+                    "default": "prueba"
+                },
+                "sexo": 
+                {
+                    "type": "string",
+                    "default": "H"
+                }
+            }
+        }
+
+
 	}
 }
