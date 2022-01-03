@@ -135,6 +135,9 @@
                     },
                     "403": {
                         "description": "Prohibido"
+                    },
+                    "404": {
+                        "description": "No se encontró resultado."
                     }
                 },
                 "parameters": [
@@ -219,6 +222,9 @@
                     "Clientes"
                 ],
                 "responses": {
+                    "200": {
+                        "description": "Cliente Agregado."
+                    },
                     "201": {
                         "description": "respuesta vacía"
                     },
@@ -277,6 +283,9 @@
                     "Clientes"
                 ],
                 "responses": {
+                    "200": {
+                        "description": "Cliente Eliminado."
+                    },
                     "201": {
                         "description": "respuesta vacía"
                     },
@@ -347,6 +356,9 @@
                     "Clientes"
                 ],
                 "responses": {
+                    "200": {
+                        "description": "Cliente Modificado."
+                    },
                     "201": {
                         "description": "respuesta vacía"
                     },
@@ -564,12 +576,6 @@
                 }
             }
         },
-        "Clientes": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/Cliente"
-            }
-        },
         "Nuevo cliente": {
             "type": "object",
             "required": [
@@ -609,14 +615,6 @@
         },
         "Cliente desactualizado": {
             "type": "object",
-            "required": [
-                "nombre",
-                "apellidos",
-                "telefono",
-                "correo",
-                "contraseña",
-                "sexo"
-            ],
             "properties": {
                 "nombre": {
                     "type": "string",
