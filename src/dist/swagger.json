@@ -543,7 +543,7 @@
                 }
             }
         },
-        "Cliente": {
+        "Clientes": {
             "type": "object",
             "properties": {
                 "idCliente": {
