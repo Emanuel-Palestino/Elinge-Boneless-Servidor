@@ -13,6 +13,10 @@
         {
             "name": "Contenido Pedido",
             "description": "API para obtener la información sobre el contenido de los pedidos de la página El Inge Boneless"
+        },
+        {
+            "name": "Stock",
+            "description": "API para trabajar con el stock de materia prima de Elinge-boneless.com"
         }
     ],
     "schemes": [
@@ -215,6 +219,59 @@
                     }
                 }
             }
+        },
+        "/stock": {
+            "get": {
+                "tags": ["Stock"],
+                "summary": "Lista del stock actual de materia prima de boneless El Inge",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idStock": 1,
+                                    "kilosBoneless": 10,
+                                    "kilosPapas": 10
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/stock"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/stock/actualizar": {
+            "put": {
+                "tags": ["Stock"],
+                "summary": "Actualiza el stock de materia prima de boneless El Inge",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Stock para Actualizar",
+                        "in": "body",
+                        "description": "Contenido del stock que se modificará",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/stock-modificar"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Stock Actualizado"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -349,6 +406,36 @@
                 "papasEspeciales": {
                     "type": "number",
                     "default": 0
+                }
+            }
+        },
+        "stock": {
+            "type": "object",
+            "properties": {
+                "idStock": {
+                    "type": "number",
+                    "description": "Identificador del Stock"
+                },
+                "kilosBoneless": {
+                    "type": "number",
+                    "description": "Cantidad en kilos de boneless en stock"
+                },
+                "kilosPapas": {
+                    "type": "number",
+                    "description": "Cantidad en kilos de papas en stock"
+                }
+            }
+        },
+        "stock-modificar": {
+            "type": "object",
+            "properties": {
+                "kilosBoneless": {
+                    "type": "number",
+                    "description": "Cantidad actualizada en kilos de boneless en stock"
+                },
+                "kilosPapas": {
+                    "type": "number",
+                    "description": "Cantidad actualizada en kilos de papas en stock"
                 }
             }
         }
