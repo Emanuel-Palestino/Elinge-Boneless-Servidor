@@ -52,7 +52,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Clientes"
+                            "$ref": "#/definitions/Cliente"
                         }
                     },
                     "403": {
@@ -132,7 +132,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Clientes"
+                            "$ref": "#/definitions/Cliente"
                         }
                     },
                     "403": {
@@ -549,7 +549,7 @@
 				}
 			}	
 		},
-		"Clientes": 
+		"Cliente": 
         {
             "type": "object",
             "properties": 
@@ -591,6 +591,12 @@
                 }                
             }
         },
+		"Clientes":{
+			"type": "array",
+			"items":{
+				"$ref":"#/definitions/Cliente"
+			}
+		},
 		
 		"Nuevo cliente": 
         {

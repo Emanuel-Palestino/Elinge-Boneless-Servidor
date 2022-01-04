@@ -51,7 +51,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Clientes"
+                            "$ref": "#/definitions/Cliente"
                         }
                     },
                     "403": {
@@ -130,7 +130,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Clientes"
+                            "$ref": "#/definitions/Cliente"
                         }
                     },
                     "403": {
@@ -543,7 +543,7 @@
                 }
             }
         },
-        "Clientes": {
+        "Cliente": {
             "type": "object",
             "properties": {
                 "idCliente": {
@@ -574,6 +574,12 @@
                     "type": "string",
                     "description": "Sexo del cliente"
                 }
+            }
+        },
+        "Clientes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Cliente"
             }
         },
         "Nuevo cliente": {
