@@ -52,7 +52,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Cliente"
+                            "$ref": "#/definitions/Clientes"
                         }
                     },
                     "403": {
