@@ -215,6 +215,363 @@
                     }
                 }
             }
+        },
+        "/pedidos": {
+            "get": {
+                "tags": ["Pedido"],
+                "summary": "Lista los pedidos existentes de la página El Inge Boneless ",
+                "description": "<p>Servicio que devuelve la información detallada de los pedidos existente en la página El Inge Boneless.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idCliente": 666,
+                                    "telefonoExtra": "111111111",
+                                    "total": 666,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 0
+                                },
+                                {
+                                    "idCliente": 777,
+                                    "telefonoExtra": "000000000",
+                                    "total": 777,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Pedido"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/pedidos/{idPedido}": {
+            "get": {
+                "tags": ["Pedido"],
+                "summary": "Lista un pedido en particular de la página El Inge Boneless ",
+                "description": "<p>Servicio que devuelve la información detallada de un pedido en específico existente en la página El Inge Boneless.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idCliente": 666,
+                                    "telefonoExtra": "111111111",
+                                    "total": 666,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Pedido"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    },
+                    "404": {
+                        "description": "No se encontró resultado"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idPedido",
+                        "in": "path",
+                        "required": true,
+                        "description": "idPedido de un pedido en específico",
+                        "type": "number",
+                        "default": "666"
+                    }
+                ]
+            }
+        },
+        "/pedidos/crear": {
+            "post": {
+                "summary": "Crea el pedido dentro de la página El Inge Boneless",
+                "description": "<p>Servicio que crea el pedido dentro de la página El Inge Boneless.</p>",
+                "operationId": "crear",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "Pedido",
+                        "in": "body",
+                        "description": "Pedido agregado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Nuevo pedido"
+                        }
+                    }
+                ],
+                "tags": ["Pedido"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/pedidos/eliminar/{idPedido}": {
+            "delete": {
+                "summary": "Elimina el pedido en específico de la página El Inge Boneless",
+                "description": "<p>Servicio que elimina el pedido dentro de la página El Inge Boneless.</p>",
+                "operationId": "eliminar",
+                "parameters": [
+                    {
+                        "name": "idPedido",
+                        "in": "path",
+                        "descrition": "id del pedido a eliminar",
+                        "required": true,
+                        "default": "8"
+                    }
+                ],
+                "tags": ["Pedido"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/pedidos/actualizar/{idPedido}": {
+            "put": {
+                "summary": "Actualiza el pedido en específico de la página El Inge Boneless",
+                "description": "<p>Servicio que actualiza un determinado pedido dentro de la página El Inge Boneless.</p>",
+                "operationId": "actualizar",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "idPedido",
+                        "in": "path",
+                        "description": "id del pedido a cambiar",
+                        "required": true,
+                        "default": 11
+                    },
+                    {
+                        "name": "Pedido",
+                        "in": "body",
+                        "description": "Pedido a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pedido desactualizado"
+                        }
+                    }
+                ],
+                "tags": ["Pedido"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/pedidos/finalizados": {
+            "get": {
+                "tags": ["Pedido"],
+                "summary": "Lista los pedidos finalizados existentes de la página El Inge Boneless ",
+                "description": "<p>Servicio que devuelve la información detallada de los pedidos finalizados existente en la página El Inge Boneless.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idCliente": 666,
+                                    "telefonoExtra": "111111111",
+                                    "total": 666,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 1
+                                },
+                                {
+                                    "idCliente": 777,
+                                    "telefonoExtra": "000000000",
+                                    "total": 777,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Pedido"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/pedidos/noFinalizados": {
+            "get": {
+                "tags": ["Pedido"],
+                "summary": "Lista los pedidos no finalizados existentes de la página El Inge Boneless ",
+                "description": "<p>Servicio que devuelve la información detallada de los pedidos no finalizados existente en la página El Inge Boneless.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idCliente": 666,
+                                    "telefonoExtra": "111111111",
+                                    "total": 666,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 0
+                                },
+                                {
+                                    "idCliente": 777,
+                                    "telefonoExtra": "000000000",
+                                    "total": 777,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Pedido"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/pedidos/cliente/finalizados/{idCliente}": {
+            "get": {
+                "tags": ["Pedido"],
+                "summary": "Listado de pedidos finalizados de un cliente en particular de la página El Inge Boneless ",
+                "description": "<p>Servicio que devuelve la información detallada de pedidos finalizados de un cliente en específico existente en la página El Inge Boneless.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idCliente": 666,
+                                    "telefonoExtra": "111111111",
+                                    "total": 666,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 1
+                                },
+                                {
+                                    "idCliente": 777,
+                                    "telefonoExtra": "000000000",
+                                    "total": 777,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Pedido"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    },
+                    "404": {
+                        "description": "No se encontró resultado"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "required": true,
+                        "description": "idCliente de un cliente en específico",
+                        "type": "number",
+                        "default": "666"
+                    }
+                ]
+            }
+        },
+        "/pedidos/cliente/noFinalizados/{idCliente}": {
+            "get": {
+                "tags": ["Pedido"],
+                "summary": "Listado de pedidos no finalizados de un cliente en particular de la página El Inge Boneless ",
+                "description": "<p>Servicio que devuelve la información detallada de pedidos no finalizados de un cliente en específico existente en la página El Inge Boneless.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idCliente": 666,
+                                    "telefonoExtra": "111111111",
+                                    "total": 666,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 0
+                                },
+                                {
+                                    "idCliente": 777,
+                                    "telefonoExtra": "000000000",
+                                    "total": 777,
+                                    "notas": "None",
+                                    "fecha": "2021-12-13T12:14:29.000Z",
+                                    "finalizado": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Pedido"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    },
+                    "404": {
+                        "description": "No se encontró resultado"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "required": true,
+                        "description": "idCliente de un cliente en específico",
+                        "type": "number",
+                        "default": "666"
+                    }
+                ]
+            }
         }
     },
     "definitions": {
@@ -349,6 +706,106 @@
                 "papasEspeciales": {
                     "type": "number",
                     "default": 0
+                }
+            }
+        },
+        "Pedido": {
+            "type": "object",
+            "properties": {
+                "idPedido": {
+                    "type": "number",
+                    "description": "Identificador del número de pedido"
+                },
+                "idCliente": {
+                    "type": "number",
+                    "description": "Identificador del cliente"
+                },
+                "telefonoExtra": {
+                    "type": "text",
+                    "description": "Telefono extra para el pedido"
+                },
+                "total": {
+                    "type": "boolean",
+                    "description": "Total de dinero por el pedido"
+                },
+                "notas": {
+                    "type": "string",
+                    "description": "Notas para realizar el pedido"
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha a realizar el pedido"
+                },
+                "finalizado": {
+                    "type": "number",
+                    "description": "Estado del pedido 0 si se encuentra en proceso, 1 si ya fue realizado"
+                }
+            }
+        },
+        "Nuevo pedido": {
+            "type": "object",
+            "required": ["idPedido", "idCliente", "telefonoExtra", "total", "notas", "fecha", "finalizado"],
+            "properties": {
+                "idPedido": {
+                    "type": "number",
+                    "description": "Identificador del número de pedido"
+                },
+                "idCliente": {
+                    "type": "number",
+                    "description": "Identificador del cliente"
+                },
+                "telefonoExtra": {
+                    "type": "text",
+                    "description": "Telefono extra para el pedido"
+                },
+                "total": {
+                    "type": "boolean",
+                    "description": "Total de dinero por el pedido"
+                },
+                "notas": {
+                    "type": "string",
+                    "description": "Notas para realizar el pedido"
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha a realizar el pedido"
+                },
+                "finalizado": {
+                    "type": "number",
+                    "description": "Estado del pedido 0 si se encuentra en proceso, 1 si ya fue realizado"
+                }
+            }
+        },
+        "Pedido desactualizado": {
+            "type": "object",
+            "properties": {
+                "idPedido": {
+                    "type": "number",
+                    "description": "Identificador del número de pedido"
+                },
+                "idCliente": {
+                    "type": "number",
+                    "description": "Identificador del cliente"
+                },
+                "telefonoExtra": {
+                    "type": "text",
+                    "description": "Telefono extra para el pedido"
+                },
+                "total": {
+                    "type": "boolean",
+                    "description": "Total de dinero por el pedido"
+                },
+                "notas": {
+                    "type": "string",
+                    "description": "Notas para realizar el pedido"
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha a realizar el pedido"
+                },
+                "finalizado": {
+                    "type": "number",
+                    "description": "Estado del pedido 0 si se encuentra en proceso, 1 si ya fue realizado"
                 }
             }
         }
