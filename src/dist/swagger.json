@@ -703,7 +703,8 @@
                     "type": "string",
                     "default": "H"
                 }
-           },
+            }
+        },
         "stock": {
             "type": "object",
             "properties": {
