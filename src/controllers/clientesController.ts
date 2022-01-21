@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-
+import bcrypt from 'bcryptjs'
 import pool from '../database';
+
 class ClientesController {
     public async listar(req: Request, res: Response): Promise<void> {
         const respuesta = await pool.query('SELECT * FROM clientes idCliente');
@@ -19,9 +20,14 @@ class ClientesController {
         res.status(404).json({ 'mensaje': 'Cliente no encontrado' });
     }
     public async crear(req: Request, res: Response): Promise<void> {
-        const resp = await pool.query("INSERT INTO clientes set ?",
-            [req.body]);
-        res.json(resp);
+        let contraseña = req.body.contraseña
+        let salt = bcrypt.genSaltSync(10)
+        bcrypt.hash(contraseña, salt).then(async nuevaContraseña => {
+            req.body.contraseña = nuevaContraseña
+            const resp = await pool.query("INSERT INTO clientes set ?", [req.body]);
+            res.json(resp);
+        })
+
     }
     public async actualizar(req: Request, res: Response): Promise<void> {
         const { idCliente } = req.params;

@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.clientesController = void 0;
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const database_1 = __importDefault(require("../database"));
 class ClientesController {
     listar(req, res) {
@@ -37,8 +38,13 @@ class ClientesController {
     }
     crear(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resp = yield database_1.default.query("INSERT INTO clientes set ?", [req.body]);
-            res.json(resp);
+            let contraseña = req.body.contraseña;
+            let salt = bcryptjs_1.default.genSaltSync(10);
+            bcryptjs_1.default.hash(contraseña, salt).then((nuevaContraseña) => __awaiter(this, void 0, void 0, function* () {
+                req.body.contraseña = nuevaContraseña;
+                const resp = yield database_1.default.query("INSERT INTO clientes set ?", [req.body]);
+                res.json(resp);
+            }));
         });
     }
     actualizar(req, res) {
