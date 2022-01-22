@@ -19,7 +19,6 @@ class ClientesController {
     listar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const respuesta = yield database_1.default.query('SELECT * FROM clientes idCliente');
-            console.log(respuesta);
             res.json(respuesta);
         });
     }
@@ -28,7 +27,6 @@ class ClientesController {
             const { id } = req.params;
             let consulta = 'SELECT * FROM clientes WHERE idCliente = ' + id;
             const respuesta = yield database_1.default.query(consulta);
-            console.log(consulta);
             if (respuesta.length > 0) {
                 res.json(respuesta[0]);
                 return;
@@ -50,7 +48,6 @@ class ClientesController {
     actualizar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idCliente } = req.params;
-            console.log(idCliente);
             const resp = yield database_1.default.query("UPDATE clientes set ? WHERE idCliente = ?", [req.body, idCliente]);
             res.json(resp);
         });
@@ -60,6 +57,24 @@ class ClientesController {
             const { idCliente } = req.params;
             const resp = yield database_1.default.query(`DELETE FROM clientes WHERE idCliente= ${idCliente}`);
             res.json(resp);
+        });
+    }
+    validar(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { correo, password } = req.params;
+            let consulta = 'SELECT idCliente, contraseña FROM clientes WHERE correo=\'' + correo + '\'';
+            const respuesta = yield database_1.default.query(consulta);
+            if (respuesta.length > 0) {
+                bcryptjs_1.default.compare(password, respuesta[0].contraseña, (err, resComp) => {
+                    if (resComp)
+                        res.json(respuesta[0].idCliente);
+                    else
+                        res.json(-1);
+                    return;
+                });
+            }
+            else
+                res.json(-1);
         });
     }
 }
