@@ -77,5 +77,14 @@ class ClientesController {
                 res.json(-1);
         });
     }
+    encriptar(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { palabra } = req.params;
+            let salt = bcryptjs_1.default.genSaltSync(10);
+            bcryptjs_1.default.hash(palabra, salt).then((nuevaContraseña) => __awaiter(this, void 0, void 0, function* () {
+                res.json(nuevaContraseña);
+            }));
+        });
+    }
 }
 exports.clientesController = new ClientesController();

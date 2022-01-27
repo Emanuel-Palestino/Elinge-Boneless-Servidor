@@ -13,6 +13,7 @@ class ClientesRoutes {
         this.router.post('/crear', clientesController_1.clientesController.crear);
         this.router.put('/actualizar/:idCliente', clientesController_1.clientesController.actualizar);
         this.router.delete('/eliminar/:idCliente', clientesController_1.clientesController.eliminar);
+        this.router.get('/encriptar/:palabra', clientesController_1.clientesController.encriptar);
         this.router.get('/:correo/:password', clientesController_1.clientesController.validar);
     }
 }

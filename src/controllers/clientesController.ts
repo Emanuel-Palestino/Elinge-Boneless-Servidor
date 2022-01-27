@@ -59,6 +59,15 @@ class ClientesController {
             res.json(-1)
     }
 
+    public async encriptar(req: Request, res: Response): Promise<void> {
+        const { palabra } = req.params
+        let salt = bcrypt.genSaltSync(10)
+        bcrypt.hash(palabra, salt).then(async nuevaContraseña => {
+            res.json(nuevaContraseña);
+        })
+
+    }
+
 }
 
 export const clientesController = new ClientesController();
