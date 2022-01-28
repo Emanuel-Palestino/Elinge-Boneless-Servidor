@@ -35,5 +35,12 @@ class DireccionesController{
         const resp = await pool.query(`DELETE FROM direcciones WHERE idDireccion = ${idDireccion}`);
         res.json(resp);
     }
+
+    public async direccionesPorCliente(req: Request, res: Response): Promise<void> {
+        const { idCliente } = req.params
+        const respuesta = await pool.query(`SELECT * FROM direcciones WHERE idCliente=${idCliente}`)
+        res.json(respuesta)
+    }
+
 }   
 export const direccionesController = new DireccionesController();

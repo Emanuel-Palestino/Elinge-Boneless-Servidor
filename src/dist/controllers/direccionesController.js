@@ -54,5 +54,12 @@ class DireccionesController {
             res.json(resp);
         });
     }
+    direccionesPorCliente(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idCliente } = req.params;
+            const respuesta = yield database_1.default.query(`SELECT * FROM direcciones WHERE idCliente=${idCliente}`);
+            res.json(respuesta);
+        });
+    }
 }
 exports.direccionesController = new DireccionesController();

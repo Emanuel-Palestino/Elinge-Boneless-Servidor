@@ -11,6 +11,7 @@ class DireccionesRoutes {
         this.router.get('/', direccionesController_1.direccionesController.listar);
         this.router.get('/:id', direccionesController_1.direccionesController.listarUno);
         this.router.post('/crear', direccionesController_1.direccionesController.crear);
+        this.router.get('/cliente/:idCliente', direccionesController_1.direccionesController.direccionesPorCliente);
         this.router.put('/actualizar/:idDireccion', direccionesController_1.direccionesController.actualizar);
         this.router.delete('/eliminar/:idDireccion', direccionesController_1.direccionesController.eliminar);
     }
