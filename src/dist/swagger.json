@@ -21,6 +21,10 @@
         {
             "name": "Stock",
             "description": "API para trabajar con el stock de materia prima de Elinge-boneless.com"
+        },
+        {
+            "name": "Pedido",
+            "description": "API para trabajar con la tabla de Pedidos de Elinge-boneless.com"
         }
     ],
     "schemes": [
@@ -35,7 +39,9 @@
     "paths": {
         "/clientes": {
             "get": {
-                "tags": ["Clientes"],
+                "tags": [
+                    "Clientes"
+                ],
                 "summary": "Listado de todos los clientes que existen de la página El Inge Boneless.",
                 "description": "<p>Servicio que devuelve la información detallada de todos los clientes que existen en la página El Inge Boneless.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los clientes existentes en la pagina?</strong></em></p>",
                 "responses": {
@@ -66,7 +72,9 @@
         },
         "/contenidoPedido": {
             "get": {
-                "tags": ["Contenido Pedido"],
+                "tags": [
+                    "Contenido Pedido"
+                ],
                 "summary": "Lista todo el contenido de los pedidos existentes de la página El Inge Boneless ",
                 "description": "<p>Servicio que devuelve la información detallada del contenido de cada uno de los pedidos existente en la página El Inge Boneless.</p>",
                 "responses": {
@@ -158,7 +166,9 @@
         },
         "/contenidoPedido/{idOrden}": {
             "get": {
-                "tags": ["Contenido Pedido"],
+                "tags": [
+                    "Contenido Pedido"
+                ],
                 "summary": "Lista el contenido de un pedido en particular de la página El Inge Boneless ",
                 "description": "<p>Servicio que devuelve la información detallada del contenido de un pedido en específico existente en la página El Inge Boneless.</p>",
                 "responses": {
@@ -243,7 +253,9 @@
                 "summary": "Crea el contenido de un pedido dentro de la página El Inge Boneless",
                 "description": "<p>Servicio que crea el contenido de un pedido dentro de la página El Inge Boneless.</p>",
                 "operationId": "crear",
-                "produces": ["application/json"],
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "name": "Contenido pedido",
@@ -255,7 +267,9 @@
                         }
                     }
                 ],
-                "tags": ["Contenido Pedido"],
+                "tags": [
+                    "Contenido Pedido"
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -313,7 +327,9 @@
                         "default": "8"
                     }
                 ],
-                "tags": ["Contenido Pedido"],
+                "tags": [
+                    "Contenido Pedido"
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -377,8 +393,12 @@
                 "summary": "Actualiza el contenido de un pedido en específico de la página El Inge Boneless",
                 "description": "<p>Servicio que actualiza el contenido de un determinado pedido dentro de la página El Inge Boneless.</p>",
                 "operationId": "actualizar",
-                "consumes": ["application/json"],
-                "produces": ["application/json"],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "name": "idOrden",
@@ -397,7 +417,9 @@
                         }
                     }
                 ],
-                "tags": ["Contenido Pedido"],
+                "tags": [
+                    "Contenido Pedido"
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -413,7 +435,9 @@
         },
         "/stock": {
             "get": {
-                "tags": ["Stock"],
+                "tags": [
+                    "Stock"
+                ],
                 "summary": "Lista del stock actual de materia prima de boneless El Inge",
                 "responses": {
                     "200": {
@@ -439,10 +463,16 @@
         },
         "/stock/actualizar": {
             "put": {
-                "tags": ["Stock"],
+                "tags": [
+                    "Stock"
+                ],
                 "summary": "Actualiza el stock de materia prima de boneless El Inge",
-                "consumes": ["application/json"],
-                "produces": ["application/json"],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "name": "Stock para Actualizar",
@@ -466,7 +496,9 @@
         },
         "/pedidos": {
             "get": {
-                "tags": ["Pedido"],
+                "tags": [
+                    "Pedido"
+                ],
                 "summary": "Lista los pedidos existentes de la página El Inge Boneless ",
                 "description": "<p>Servicio que devuelve la información detallada de los pedidos existente en la página El Inge Boneless.</p>",
                 "responses": {
@@ -495,7 +527,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Pedido"
+                            "$ref": "#/definitions/Pedidos"
                         }
                     },
                     "403": {
@@ -506,7 +538,9 @@
         },
         "/pedidos/{idPedido}": {
             "get": {
-                "tags": ["Pedido"],
+                "tags": [
+                    "Pedido"
+                ],
                 "summary": "Lista un pedido en particular de la página El Inge Boneless ",
                 "description": "<p>Servicio que devuelve la información detallada de un pedido en específico existente en la página El Inge Boneless.</p>",
                 "responses": {
@@ -553,7 +587,9 @@
                 "summary": "Crea el pedido dentro de la página El Inge Boneless",
                 "description": "<p>Servicio que crea el pedido dentro de la página El Inge Boneless.</p>",
                 "operationId": "crear",
-                "produces": ["application/json"],
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "name": "Pedido",
@@ -565,7 +601,9 @@
                         }
                     }
                 ],
-                "tags": ["Pedido"],
+                "tags": [
+                    "Pedido"
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -593,7 +631,9 @@
                         "default": "8"
                     }
                 ],
-                "tags": ["Pedido"],
+                "tags": [
+                    "Pedido"
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -612,8 +652,12 @@
                 "summary": "Actualiza el pedido en específico de la página El Inge Boneless",
                 "description": "<p>Servicio que actualiza un determinado pedido dentro de la página El Inge Boneless.</p>",
                 "operationId": "actualizar",
-                "consumes": ["application/json"],
-                "produces": ["application/json"],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "name": "idPedido",
@@ -632,7 +676,9 @@
                         }
                     }
                 ],
-                "tags": ["Pedido"],
+                "tags": [
+                    "Pedido"
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -648,7 +694,9 @@
         },
         "/pedidos/finalizados": {
             "get": {
-                "tags": ["Pedido"],
+                "tags": [
+                    "Pedido"
+                ],
                 "summary": "Lista los pedidos finalizados existentes de la página El Inge Boneless ",
                 "description": "<p>Servicio que devuelve la información detallada de los pedidos finalizados existente en la página El Inge Boneless.</p>",
                 "responses": {
@@ -677,7 +725,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Pedido"
+                            "$ref": "#/definitions/Pedidos"
                         }
                     },
                     "403": {
@@ -688,7 +736,9 @@
         },
         "/pedidos/noFinalizados": {
             "get": {
-                "tags": ["Pedido"],
+                "tags": [
+                    "Pedido"
+                ],
                 "summary": "Lista los pedidos no finalizados existentes de la página El Inge Boneless ",
                 "description": "<p>Servicio que devuelve la información detallada de los pedidos no finalizados existente en la página El Inge Boneless.</p>",
                 "responses": {
@@ -717,7 +767,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Pedido"
+                            "$ref": "#/definitions/Pedidos"
                         }
                     },
                     "403": {
@@ -728,7 +778,9 @@
         },
         "/pedidos/cliente/finalizados/{idCliente}": {
             "get": {
-                "tags": ["Pedido"],
+                "tags": [
+                    "Pedido"
+                ],
                 "summary": "Listado de pedidos finalizados de un cliente en particular de la página El Inge Boneless ",
                 "description": "<p>Servicio que devuelve la información detallada de pedidos finalizados de un cliente en específico existente en la página El Inge Boneless.</p>",
                 "responses": {
@@ -781,7 +833,9 @@
         },
         "/pedidos/cliente/noFinalizados/{idCliente}": {
             "get": {
-                "tags": ["Pedido"],
+                "tags": [
+                    "Pedido"
+                ],
                 "summary": "Listado de pedidos no finalizados de un cliente en particular de la página El Inge Boneless ",
                 "description": "<p>Servicio que devuelve la información detallada de pedidos no finalizados de un cliente en específico existente en la página El Inge Boneless.</p>",
                 "responses": {
@@ -887,7 +941,17 @@
         },
         "Nuevo contenido pedido": {
             "type": "object",
-            "required": ["idPedido", "subtotal", "cantidadBoneless", "cantidadPapas", "mangoHabanero", "bbq", "bufalo", "piñaHabanero", "papasEspeciales"],
+            "required": [
+                "idPedido",
+                "subtotal",
+                "cantidadBoneless",
+                "cantidadPapas",
+                "mangoHabanero",
+                "bbq",
+                "bufalo",
+                "piñaHabanero",
+                "papasEspeciales"
+            ],
             "properties": {
                 "idPedido": {
                     "type": "number",
@@ -1136,9 +1200,23 @@
                 }
             }
         },
+        "Pedidos": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Pedido"
+            }
+        },
         "Nuevo pedido": {
             "type": "object",
-            "required": ["idPedido", "idCliente", "telefonoExtra", "total", "notas", "fecha", "finalizado"],
+            "required": [
+                "idPedido",
+                "idCliente",
+                "telefonoExtra",
+                "total",
+                "notas",
+                "fecha",
+                "finalizado"
+            ],
             "properties": {
                 "idCliente": {
                     "type": "number",
@@ -1169,10 +1247,6 @@
         "Pedido desactualizado": {
             "type": "object",
             "properties": {
-                "idPedido": {
-                    "type": "number",
-                    "description": "Identificador del número de pedido"
-                },
                 "idCliente": {
                     "type": "number",
                     "description": "Identificador del cliente"
