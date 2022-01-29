@@ -3,8 +3,6 @@ import pool from "../database";
 
 class RealizarPedidoController {
 
-
-
 	public async realizar(req: Request, res: Response): Promise<void> {
 
 		let fecha_ob = new Date();

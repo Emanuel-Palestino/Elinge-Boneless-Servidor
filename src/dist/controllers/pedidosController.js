@@ -18,7 +18,6 @@ class PedidosController {
     listar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const respuesta = yield database_1.default.query('SELECT * FROM pedidos ORDER BY idPedido');
-            // console.log(respuesta);
             res.json(respuesta);
         });
     }
@@ -31,41 +30,38 @@ class PedidosController {
                 res.json(respuesta[0]);
                 return;
             }
-            res.status(404).json({ 'mensaje': 'Pedido no encontrada' });
+            res.status(404).json({ 'mensaje': 'Pedido no encontrado' });
         });
     }
     crear(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resp = yield database_1.default.query('INSERT INTO pedidos set ?', [req.body]);
-            res.json(resp);
+            const respuesta = yield database_1.default.query('INSERT INTO pedidos set ?', [req.body]);
+            res.json(respuesta);
         });
     }
     eliminar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idPedido } = req.params;
-            const resp = yield database_1.default.query(`DELETE FROM pedidos WHERE idPedido= ${idPedido}`);
-            console.log(idPedido);
-            res.json(resp);
+            const respuesta = yield database_1.default.query(`DELETE FROM pedidos WHERE idPedido= ${idPedido}`);
+            res.json(respuesta);
         });
     }
     actualizar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idPedido } = req.params;
-            const resp = yield database_1.default.query('UPDATE pedidos set ? WHERE idPedido = ?', [req.body, idPedido]);
-            res.json(resp);
+            const respuesta = yield database_1.default.query('UPDATE pedidos set ? WHERE idPedido = ?', [req.body, idPedido]);
+            res.json(respuesta);
         });
     }
     listarPedidosFinalizados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const respuesta = yield database_1.default.query('SELECT * FROM pedidos WHERE finalizado = 1');
-            // console.log(respuesta);
             res.json(respuesta);
         });
     }
     listarPedidosNoFinalizados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const respuesta = yield database_1.default.query('SELECT * FROM pedidos WHERE finalizado = 0');
-            // console.log(respuesta);
             res.json(respuesta);
         });
     }
@@ -73,7 +69,6 @@ class PedidosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { idCliente } = req.params;
             const respuesta = yield database_1.default.query('SELECT * FROM pedidos WHERE finalizado = 1 AND idCliente = ?', [idCliente]);
-            // console.log(respuesta);
             res.json(respuesta);
         });
     }
@@ -81,7 +76,6 @@ class PedidosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { idCliente } = req.params;
             const respuesta = yield database_1.default.query('SELECT * FROM pedidos WHERE finalizado = 0 AND idCliente = ?', [idCliente]);
-            // console.log(respuesta);
             res.json(respuesta);
         });
     }
