@@ -11,6 +11,7 @@ import pedidosRoutes from './routes/pedidosRoutes'
 import relizarPedidoRoutes from './routes/relizarPedidoRoutes'
 import clientesRoutes from './routes/clientesRoutes';
 import stockRoutes from './routes/stockRoutes'
+import administracionRoutes from './routes/administracionRoutes'
 
 class Server {
 
@@ -39,6 +40,7 @@ class Server {
 		this.app.use('/api/realizarPedido',relizarPedidoRoutes);
 		this.app.use('/api/clientes',clientesRoutes)
 		this.app.use('/api/stock', stockRoutes)
+		this.app.use('/api/administracion', administracionRoutes)
 	}
 
 	start(): void {

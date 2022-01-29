@@ -15,6 +15,7 @@ const pedidosRoutes_1 = __importDefault(require("./routes/pedidosRoutes"));
 const relizarPedidoRoutes_1 = __importDefault(require("./routes/relizarPedidoRoutes"));
 const clientesRoutes_1 = __importDefault(require("./routes/clientesRoutes"));
 const stockRoutes_1 = __importDefault(require("./routes/stockRoutes"));
+const administracionRoutes_1 = __importDefault(require("./routes/administracionRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -37,6 +38,7 @@ class Server {
         this.app.use('/api/realizarPedido', relizarPedidoRoutes_1.default);
         this.app.use('/api/clientes', clientesRoutes_1.default);
         this.app.use('/api/stock', stockRoutes_1.default);
+        this.app.use('/api/administracion', administracionRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
