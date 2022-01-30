@@ -25,6 +25,10 @@
         {
             "name": "Pedido",
             "description": "API para trabajar con la tabla de Pedidos de Elinge-boneless.com"
+        },
+        {
+            "name": "Realizar Pedido Completo",
+            "description": "API para crear un pedido completo de Elinge-boneless.com"
         }
     ],
     "schemes": [
@@ -896,6 +900,41 @@
                     }
                 ]
             }
+        },
+        "/realizarPedido": {
+            "post": {
+                "summary": "Crea un pedido completo dentro de la página El Inge Boneless",
+                "description": "<p>Servicio que crea un pedido completo dentro de la página El Inge Boneless.</p>",
+                "operationId": "crear",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Informacion de Pedido",
+                        "in": "body",
+                        "description": "Informacion de Pedido",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pedido Completo"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Realizar Pedido Completo"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pedido Agregado Correctamente"
+                    },
+                    "201": {
+                        "description": "Respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -1190,7 +1229,7 @@
                     "description": "Identificador del cliente"
                 },
                 "telefonoExtra": {
-                    "type": "text",
+                    "type": "string",
                     "description": "Telefono extra para el pedido"
                 },
                 "total": {
@@ -1239,7 +1278,7 @@
                     "description": "Identificador del cliente"
                 },
                 "telefonoExtra": {
-                    "type": "text",
+                    "type": "string",
                     "description": "Telefono extra para el pedido"
                 },
                 "total": {
@@ -1272,7 +1311,7 @@
                     "description": "Identificador del cliente"
                 },
                 "telefonoExtra": {
-                    "type": "text",
+                    "type": "string",
                     "description": "Telefono extra para el pedido"
                 },
                 "total": {
@@ -1294,6 +1333,81 @@
                 "finalizado": {
                     "type": "number",
                     "description": "Estado del pedido 0 si se encuentra en proceso, 1 si ya fue realizado"
+                }
+            }
+        },
+        "Pedido Completo": {
+            "type": "object",
+            "properties": {
+                "pedido": {
+                    "type": "object",
+                    "properties": {
+                        "idCliente": {
+                            "type": "number",
+                            "description": "Identificador del cliente"
+                        },
+                        "telefonoExtra": {
+                            "type": "string",
+                            "description": "Telefono extra para el pedido"
+                        },
+                        "total": {
+                            "type": "number",
+                            "description": "Total de dinero por el pedido"
+                        },
+                        "dineroRecibido": {
+                            "type": "number",
+                            "description": "Dinero recibido por parte del cliente"
+                        },
+                        "notas": {
+                            "type": "string",
+                            "description": "Notas para realizar el pedido"
+                        },
+                        "idDireccion": {
+                            "type": "number",
+                            "description": "Dirección a la que se hará la entrega"
+                        },
+                        "finalizado": {
+                            "type": "number",
+                            "description": "Estado del pedido 0 si se encuentra en proceso, 1 si ya fue realizado"
+                        }
+                    }
+                },
+                "contenido_pedido": {
+                    "type": "object",
+                    "properties": {
+                        "subtotal": {
+                            "type": "number",
+                            "default": 101.50
+                        },
+                        "cantidadBoneless": {
+                            "type": "number",
+                            "default": 15
+                        },
+                        "cantidadPapas": {
+                            "type": "number",
+                            "default": 3
+                        },
+                        "mangoHabanero": {
+                            "type": "number",
+                            "default": 5
+                        },
+                        "bbq": {
+                            "type": "number",
+                            "default": 5
+                        },
+                        "bufalo": {
+                            "type": "number",
+                            "default": 5
+                        },
+                        "piñaHabanero": {
+                            "type": "number",
+                            "default": 0
+                        },
+                        "papasEspeciales": {
+                            "type": "number",
+                            "default": 0
+                        }
+                    }
                 }
             }
         }

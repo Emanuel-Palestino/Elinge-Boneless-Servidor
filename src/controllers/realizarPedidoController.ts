@@ -34,8 +34,8 @@ class RealizarPedidoController {
 		const resultado = await pool.query('INSERT INTO pedidos set ?', [req.body.pedido]);
 		const idPedidoAux = resultado['insertId'];
 
-		req.body.contenido_Pedido['idPedido'] = idPedidoAux;
-		await pool.query('INSERT INTO contenido_pedido set ?', [req.body.contenido_Pedido]);
+		req.body.contenido_pedido['idPedido'] = idPedidoAux;
+		await pool.query('INSERT INTO contenido_pedido set ?', [req.body.contenido_pedido]);
 		res.json(resultado);
 	}
 }

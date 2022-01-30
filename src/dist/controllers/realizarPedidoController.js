@@ -35,8 +35,8 @@ class RealizarPedidoController {
             req.body.pedido['fecha'] = fechaActual;
             const resultado = yield database_1.default.query('INSERT INTO pedidos set ?', [req.body.pedido]);
             const idPedidoAux = resultado['insertId'];
-            req.body.contenido_Pedido['idPedido'] = idPedidoAux;
-            yield database_1.default.query('INSERT INTO contenido_pedido set ?', [req.body.contenido_Pedido]);
+            req.body.contenido_pedido['idPedido'] = idPedidoAux;
+            yield database_1.default.query('INSERT INTO contenido_pedido set ?', [req.body.contenido_pedido]);
             res.json(resultado);
         });
     }
