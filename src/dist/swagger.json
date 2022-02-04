@@ -227,6 +227,7 @@
                         "examples": {
                             "application/json": [
                                 {
+                                    "idPedido": 666,
                                     "idCliente": 666,
                                     "telefonoExtra": "111111111",
                                     "total": 666,
@@ -235,6 +236,7 @@
                                     "finalizado": 0
                                 },
                                 {
+                                    "idPedido": 777,
                                     "idCliente": 777,
                                     "telefonoExtra": "000000000",
                                     "total": 777,
@@ -265,6 +267,7 @@
                         "examples": {
                             "application/json": [
                                 {
+                                    "idPedido": 666,
                                     "idCliente": 666,
                                     "telefonoExtra": "111111111",
                                     "total": 666,
@@ -406,6 +409,7 @@
                         "examples": {
                             "application/json": [
                                 {
+                                    "idPedido": 666,
                                     "idCliente": 666,
                                     "telefonoExtra": "111111111",
                                     "total": 666,
@@ -414,6 +418,7 @@
                                     "finalizado": 1
                                 },
                                 {
+                                    "idPedido": 777,
                                     "idCliente": 777,
                                     "telefonoExtra": "000000000",
                                     "total": 777,
@@ -444,6 +449,7 @@
                         "examples": {
                             "application/json": [
                                 {
+                                    "idPedido": 666,
                                     "idCliente": 666,
                                     "telefonoExtra": "111111111",
                                     "total": 666,
@@ -452,6 +458,7 @@
                                     "finalizado": 0
                                 },
                                 {
+                                    "idPedido": 777,
                                     "idCliente": 777,
                                     "telefonoExtra": "000000000",
                                     "total": 777,
@@ -482,6 +489,7 @@
                         "examples": {
                             "application/json": [
                                 {
+                                    "idPedido": 666,
                                     "idCliente": 666,
                                     "telefonoExtra": "111111111",
                                     "total": 666,
@@ -490,6 +498,7 @@
                                     "finalizado": 1
                                 },
                                 {
+                                    "idPedido": 777,
                                     "idCliente": 777,
                                     "telefonoExtra": "000000000",
                                     "total": 777,
@@ -533,6 +542,7 @@
                         "examples": {
                             "application/json": [
                                 {
+                                    "idPedido": 666,
                                     "idCliente": 666,
                                     "telefonoExtra": "111111111",
                                     "total": 666,
@@ -541,6 +551,7 @@
                                     "finalizado": 0
                                 },
                                 {
+                                    "idPedido": 777,
                                     "idCliente": 777,
                                     "telefonoExtra": "000000000",
                                     "total": 777,
@@ -746,10 +757,6 @@
             "type": "object",
             "required": ["idPedido", "idCliente", "telefonoExtra", "total", "notas", "fecha", "finalizado"],
             "properties": {
-                "idPedido": {
-                    "type": "number",
-                    "description": "Identificador del número de pedido"
-                },
                 "idCliente": {
                     "type": "number",
                     "description": "Identificador del cliente"
