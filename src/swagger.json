@@ -977,7 +977,7 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "#/definitions/Contenido pedidos"
+                            "$ref": "#/definitions/Direcciones"
                         }
                     },
                     "403": {
@@ -1754,7 +1754,6 @@
         "Nueva Direccion":{
             "type": "object",
             "required": [
-                "idDireccion",
                 "colonia",
                 "calle",
                 "numeroExterior",
@@ -1763,10 +1762,6 @@
                 "idCliente"
             ],
             "properties":{
-                "idDireccion":{
-                    "type":"number",
-                    "default":20
-                },
                 "colonia":{
                     "type":"string",
                     "default":"Reforma Agraria"
