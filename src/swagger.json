@@ -29,6 +29,14 @@
         {
             "name": "Realizar Pedido Completo",
             "description": "API para crear un pedido completo de Elinge-boneless.com"
+        },
+        {
+            "name": "Direcciones",
+            "description": "API para obtener la información de las direcciones de los clientes de la página Elinge-boneless.com"
+        },
+        {
+            "name": "Administrador",
+            "description": "API para verificar los datos del administrador de la página Elinge-boneless.com"
         }
     ],
     "schemes": [
@@ -935,6 +943,298 @@
                     }
                 }
             }
+        },
+        "/direcciones":{
+            "get":{
+                "tags":[
+                    "Direcciones"
+                ],
+                "summary": "Listado de todas las direcciones que existen de la página El Inge Boneless.",
+                "description": "<p>Servicio que devuelve la información detallada de cada una de las direcciones que existen en la página El Inge Boneless</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idDireccion": 1,
+                                    "colonia": "Reforma Agraria",
+                                    "calle": "Galileo",
+                                    "numeroExterior": 10,
+                                    "numeroInterior": 2,
+                                    "referencia": "Antes de la curva",
+                                    "idCliente ": 1
+                                },
+                                {
+                                    "idDireccion": 2,
+                                    "colonia": "Reforma",
+                                    "calle": "Almendros",
+                                    "numeroExterior": 109,
+                                    "numeroInterior": 29,
+                                    "referencia": "",
+                                    "idCliente ": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Direcciones"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/direcciones/{idDireccion}":{
+            "get":{
+                "tags": [
+                    "Direcciones"
+                ],
+                "summary": "Lista el contenido de una dirección en particular de la página El Inge Boneless ",
+                "description": "<p>Servicio que devuelve la información detallada de una dirección en específico existente en la página El Inge Boneless.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idDireccion": 1,
+                                    "colonia": "Reforma Agraria",
+                                    "calle": "Galileo",
+                                    "numeroExterior": 10,
+                                    "numeroInterior": 2,
+                                    "referencia": "Antes de la curva",
+                                    "idCliente ": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Direccion"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    },
+                    "404": {
+                        "description": "No se encontró resultado"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idDireccion",
+                        "in": "path",
+                        "required": true,
+                        "description": "id del contenido de una dirección en específico",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/direcciones/crear":{
+            "post": {
+                "summary": "Crea el contenido de una dirección dentro de la página El Inge Boneless",
+                "description": "<p>Servicio que crea el contenido de una dirección dentro de la página El Inge Boneless.</p>",
+                "operationId": "crear",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Direccion",
+                        "in": "body",
+                        "description": "Dirección agregada",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Nueva Direccion"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Direcciones"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/direcciones/cliente/{idCliente}":{
+            "get":{
+                "tags":[
+                    "Direcciones"
+                ],
+                "summary": "Listado de todas las direcciones de un cliente que existe de la página El Inge Boneless.",
+                "description": "<p>Servicio que devuelve la información detallada de cada una de las direcciones de un cliente en especifico que existe en la página El Inge Boneless</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "idDireccion": 1,
+                                    "colonia": "Reforma Agraria",
+                                    "calle": "Galileo",
+                                    "numeroExterior": 10,
+                                    "numeroInterior": 2,
+                                    "referencia": "Antes de la curva",
+                                    "idCliente ": 1
+                                },
+                                {
+                                    "idDireccion": 2,
+                                    "colonia": "Reforma",
+                                    "calle": "Almendros",
+                                    "numeroExterior": 109,
+                                    "numeroInterior": 29,
+                                    "referencia": "",
+                                    "idCliente ": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Direcciones"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    },
+                    "404": {
+                        "description": "No se encontró resultado"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "required": true,
+                        "description": "id del contenido de una dirección de un cliente en específico",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/direcciones/actualizar/{idDireccion}":{
+            "put": {
+                "summary": "Actualiza el contenido de una dirección en específico de la página El Inge Boneless",
+                "description": "<p>Servicio que actualiza el contenido de una dirección en específico dentro de la página El Inge Boneless.</p>",
+                "operationId": "actualizar",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idDireccion",
+                        "in": "path",
+                        "description": "idDireccion de la dirección a cambiar",
+                        "required": true,
+                        "default": 60
+                    },
+                    {
+                        "name": "Dirección",
+                        "in": "body",
+                        "description": "Dirección a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Direccion desactualizada"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Direcciones"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/direcciones/eliminar/{idDireccion}":{
+            "delete": {
+                "summary": "Elimina el contenido de una dirección en específico de la página El Inge Boneless",
+                "description": "<p>Servicio que elimina el contenido de una dirección dentro de la página El Inge Boneless.</p>",
+                "operationId": "eliminar",
+                "parameters": [
+                    {
+                        "name": "idDireccion",
+                        "in": "path",
+                        "descrition": "id de la dirección a eliminar",
+                        "required": true,
+                        "default": "8"
+                    }
+                ],
+                "tags": [
+                    "Direcciones"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/administracion/validar/{correo}/{password}":{
+            "get":{
+                "summary": "Verifica si existe un usuario dentro de la página El Inge Boneless.",
+                "description": "<p>Servicio que verifica la existencia de un administrador dentro de la página El Inge Boneless</p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "correo",
+                        "in": "path",
+                        "description": "Correo del administrador a verificar",
+                        "required": true,
+                        "default": "prueba@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "description": "Contraseña del administrador a verificar",
+                        "required": true,
+                        "default": "prueba"
+                    }
+                ],
+                "tags": [
+                    "Administrador"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -1408,6 +1708,112 @@
                             "default": 0
                         }
                     }
+                }
+            }
+        },
+        "Direccion":{
+            "type":"object",
+            "properties":{
+                "idDireccion":{
+                    "type":"number",
+                    "description":"Identificador de la dirección de un cliente"
+                },
+                "colonia":{
+                    "type":"string",
+                    "description":"Colonia de la dirección de un cliente"
+                },
+                "calle":{
+                    "type":"string",
+                    "description":"Calle de la dirección de un cliente"
+                },
+                "numeroExterior":{
+                    "type":"number",
+                    "description": "Número exterior de la dirección de un cliente"
+                },
+                "numeroInterior":{
+                    "type":"number",
+                    "description": "Número interior de la dirección de un cliente"
+                },
+                "referencia":{
+                    "type":"string",
+                    "description":"Información adicinal de la dirección de un cliente"
+                },
+                "idCliente":{
+                    "type":"number",
+                    "description":"Identificador del cliente"
+                }                
+            }
+            
+        },
+        "Direcciones": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Direccion"
+            }
+        },
+        "Nueva Direccion":{
+            "type": "object",
+            "required": [
+                "colonia",
+                "calle",
+                "numeroExterior",
+                "numeroInterior",
+                "referencia",
+                "idCliente"
+            ],
+            "properties":{
+                "colonia":{
+                    "type":"string",
+                    "default":"Reforma Agraria"
+                },
+                "calle":{
+                    "type":"string",
+                    "default":"Galileo"
+                },
+                "numeroExterior":{
+                    "type":"number",
+                    "default": 6
+                },
+                "numeroInterior":{
+                    "type":"number",
+                    "default": 3
+                },
+                "referencia":{
+                    "type":"string",
+                    "default":"Antes de la curva"
+                },
+                "idCliente":{
+                    "type":"number",
+                    "default":1
+                }
+            }
+        },
+        "Direccion desactualizada":{
+            "type":"object",
+            "properties":{
+                "colonia":{
+                    "type":"string",
+                    "default":"Reforma"
+                },
+                "calle":{
+                    "type":"string",
+                    "default":"Almendros"
+                },
+                "numeroExterior":{
+                    "type":"number",
+                    "default": 155
+                },
+                "numeroInterior":{
+                    "type":"number",
+                    "default": 9
+                },
+                "referencia":{
+                    "type":"string",
+                    "default":"Carca del soriana"
+                },
+                "idCliente":{
+                    "type":"number",
+                    "default":1
                 }
             }
         }
