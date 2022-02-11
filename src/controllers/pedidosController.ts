@@ -5,6 +5,7 @@ class PedidosController {
 		const respuesta = await pool.query('SELECT * FROM pedidos ORDER BY idPedido');
 		res.json(respuesta);
 	}
+
 	public async listarUno(req: Request, res: Response): Promise<void> {
 		const { id } = req.params;
 		let consulta = `SELECT * FROM pedidos WHERE idPedido = ${id}`;
@@ -32,23 +33,38 @@ class PedidosController {
 		const respuesta = await pool.query('UPDATE pedidos set ? WHERE idPedido = ?', [req.body, idPedido]);
 		res.json(respuesta);
 	}
+
 	public async listarPedidosFinalizados(req: Request, res: Response): Promise<void> {
 		const respuesta = await pool.query('SELECT * FROM pedidos WHERE finalizado = 1');
 		res.json(respuesta);
 	}
+
 	public async listarPedidosNoFinalizados(req: Request, res: Response): Promise<void> {
 		const respuesta = await pool.query('SELECT * FROM pedidos WHERE finalizado = 0');
 		res.json(respuesta);
 	}
+
 	public async listarPedidosFinalizadosCliente(req: Request, res: Response): Promise<void> {
 		const { idCliente } = req.params;
 		const respuesta = await pool.query('SELECT * FROM pedidos WHERE finalizado = 1 AND idCliente = ?', [idCliente]);
 		res.json(respuesta);
 	}
+
 	public async listarPedidosNoFinalizadosCliente(req: Request, res: Response): Promise<void> {
 		const { idCliente } = req.params;
 		const respuesta = await pool.query('SELECT * FROM pedidos WHERE finalizado = 0 AND idCliente = ?', [idCliente]);
 		res.json(respuesta);
+	}
+
+	public async listarPedidosCompletosPorCliente(req: Request, res: Response): Promise<void> {
+		const { idCliente } = req.params
+		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.idCliente = ?', [idCliente])
+		res.json(respuesta)
+	}
+
+	public async listarPedidosCompletos(req: Request, res: Response): Promise<void> {
+		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido')
+		res.json(respuesta)
 	}
 
 }
