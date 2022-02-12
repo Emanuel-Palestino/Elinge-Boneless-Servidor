@@ -82,13 +82,13 @@ class PedidosController {
     listarPedidosCompletosPorCliente(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idCliente } = req.params;
-            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion WHERE P.idCliente = ?', [idCliente]);
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.idCliente = ?', [idCliente]);
             res.json(respuesta);
         });
     }
     listarPedidosCompletos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion');
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido');
             res.json(respuesta);
         });
     }
