@@ -67,6 +67,16 @@ class PedidosController {
 		res.json(respuesta)
 	}
 
+	public async listarPedidosCompletosFinalizados(req: Request, res: Response): Promise<void> {
+		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 1')
+		res.json(respuesta)
+	}
+
+	public async listarPedidosCompletosNoFinalizados(req: Request, res: Response): Promise<void> {
+		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 0')
+		res.json(respuesta)
+	}
+
 }
 
 export const pedidosController = new PedidosController();

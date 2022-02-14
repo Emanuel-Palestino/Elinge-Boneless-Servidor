@@ -12,6 +12,8 @@ class PedidosRoutes {
         this.router.get('/finalizados', pedidosController_1.pedidosController.listarPedidosFinalizados);
         this.router.get('/noFinalizados', pedidosController_1.pedidosController.listarPedidosNoFinalizados);
         this.router.get('/pedidosCompletos', pedidosController_1.pedidosController.listarPedidosCompletos);
+        this.router.get('/pedidosCompletos/finalizados', pedidosController_1.pedidosController.listarPedidosCompletosFinalizados);
+        this.router.get('/pedidosCompletos/noFinalizados', pedidosController_1.pedidosController.listarPedidosCompletosNoFinalizados);
         this.router.get('/:id', pedidosController_1.pedidosController.listarUno);
         this.router.post('/crear', pedidosController_1.pedidosController.crear);
         this.router.delete('/eliminar/:idPedido', pedidosController_1.pedidosController.eliminar);

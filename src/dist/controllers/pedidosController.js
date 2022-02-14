@@ -92,5 +92,17 @@ class PedidosController {
             res.json(respuesta);
         });
     }
+    listarPedidosCompletosFinalizados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 1');
+            res.json(respuesta);
+        });
+    }
+    listarPedidosCompletosNoFinalizados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 0');
+            res.json(respuesta);
+        });
+    }
 }
 exports.pedidosController = new PedidosController();
