@@ -82,25 +82,25 @@ class PedidosController {
     listarPedidosCompletosPorCliente(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idCliente } = req.params;
-            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.idCliente = ?', [idCliente]);
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.idCliente = ? ORDER BY fecha DESC', [idCliente]);
             res.json(respuesta);
         });
     }
     listarPedidosCompletos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido');
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido ORDER BY fecha DESC');
             res.json(respuesta);
         });
     }
     listarPedidosCompletosFinalizados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 1');
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 1 ORDER BY fecha DESC');
             res.json(respuesta);
         });
     }
     listarPedidosCompletosNoFinalizados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 0');
+            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 0 ORDER BY fecha DESC');
             res.json(respuesta);
         });
     }

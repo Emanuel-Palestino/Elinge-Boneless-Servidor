@@ -58,22 +58,22 @@ class PedidosController {
 
 	public async listarPedidosCompletosPorCliente(req: Request, res: Response): Promise<void> {
 		const { idCliente } = req.params
-		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.idCliente = ?', [idCliente])
+		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.idCliente = ? ORDER BY fecha DESC', [idCliente])
 		res.json(respuesta)
 	}
 
 	public async listarPedidosCompletos(req: Request, res: Response): Promise<void> {
-		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido')
+		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido ORDER BY fecha DESC')
 		res.json(respuesta)
 	}
 
 	public async listarPedidosCompletosFinalizados(req: Request, res: Response): Promise<void> {
-		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 1')
+		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 1 ORDER BY fecha DESC')
 		res.json(respuesta)
 	}
 
 	public async listarPedidosCompletosNoFinalizados(req: Request, res: Response): Promise<void> {
-		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 0')
+		const respuesta  = await pool.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 0 ORDER BY fecha DESC')
 		res.json(respuesta)
 	}
 
