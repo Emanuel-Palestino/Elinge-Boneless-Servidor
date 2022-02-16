@@ -104,5 +104,12 @@ class PedidosController {
             res.json(respuesta);
         });
     }
+    finalizarPedido(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idPedido } = req.params;
+            const respuesta = yield database_1.default.query('UPDATE pedidos SET finalizado = 1 WHERE pedidos.idPedido = ?', [idPedido]);
+            res.json(respuesta);
+        });
+    }
 }
 exports.pedidosController = new PedidosController();

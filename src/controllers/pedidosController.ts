@@ -77,6 +77,12 @@ class PedidosController {
 		res.json(respuesta)
 	}
 
+	public async finalizarPedido(req: Request, res: Response): Promise<void> {
+		const { idPedido } = req.params
+		const respuesta = await pool.query('UPDATE pedidos SET finalizado = 1 WHERE pedidos.idPedido = ?', [idPedido])
+		res.json(respuesta)
+	}
+
 }
 
 export const pedidosController = new PedidosController();
