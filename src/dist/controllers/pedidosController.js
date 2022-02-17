@@ -94,13 +94,13 @@ class PedidosController {
     }
     listarPedidosCompletosFinalizados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 1 ORDER BY fecha DESC');
+            const respuesta = yield database_1.default.query('SELECT P.*, D.*, CP.*, C.nombre, C.apellidos, C.telefono FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido INNER JOIN clientes C ON P.idCliente = C.idCliente WHERE P.finalizado = 1 ORDER BY fecha DESC');
             res.json(respuesta);
         });
     }
     listarPedidosCompletosNoFinalizados(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const respuesta = yield database_1.default.query('SELECT * FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido WHERE P.finalizado = 0 ORDER BY fecha DESC');
+            const respuesta = yield database_1.default.query('SELECT P.*, D.*, CP.*, C.nombre, C.apellidos, C.telefono FROM pedidos as P INNER JOIN direcciones D on P.idDireccion = D.idDireccion INNER JOIN contenido_pedido CP ON CP.idPedido = P.idPedido INNER JOIN clientes C ON P.idCliente = C.idCliente WHERE P.finalizado = 0 ORDER BY fecha DESC');
             res.json(respuesta);
         });
     }
