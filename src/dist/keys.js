@@ -6,6 +6,6 @@ exports.default = {
         user: process.env.HOSTUSER || 'root',
         password: process.env.HOSTPASS || '',
         database: (process.env.HOSTPREFDB || '') + 'elinge-boneless',
-        dateString: true
+        dateStrings: true
     }
 };
